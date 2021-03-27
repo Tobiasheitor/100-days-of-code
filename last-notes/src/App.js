@@ -1,8 +1,12 @@
+import Header from "./components/Header";
+import Logo from "./components/Logo";
+
 function App() {
   return (
     <div className="App">
-      <p>Hello World!</p>
-      
+      <Header>
+        <Logo />
+      </Header>
     </div>
   );
 }
