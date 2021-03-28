@@ -1,3 +1,4 @@
+import Actions from "./components/Actions";
 import Header from "./components/Header";
 import Logo from "./components/Logo";
 
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Header>
         <Logo />
+        <Actions />
       </Header>
     </div>
   );
