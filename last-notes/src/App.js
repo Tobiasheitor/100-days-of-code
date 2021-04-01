@@ -3,10 +3,11 @@ import Header from "./components/Header";
 import Logo from "./components/Logo";
 import Notes from "./components/Notes";
 import NotesArea from "./components/NotesArea";
+import HightLightProvider from "./context/HightLightContext";
 
 function App() {
   return (
-    <div className="App">
+    <HightLightProvider>
       <Header>
         <Logo />
         <Actions />
@@ -14,7 +15,7 @@ function App() {
       <NotesArea>
         <Notes/>
       </NotesArea>
-    </div>
+    </HightLightProvider>
   );
 }
 
