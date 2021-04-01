@@ -10,6 +10,10 @@
     background: var(--note-background);
 }
 
+.note.hightlight {
+    border: 2px solid var(--dark-gray);
+}
+
 .note hr {
     align-self: center;
     width: 80%;
