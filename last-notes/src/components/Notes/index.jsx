@@ -1,13 +1,13 @@
 import React from "react";
 import { useHightLight } from "../../context/HightLightContext";
+import { useNoteList } from "../../context/NoteListContext";
 import Note from "../Note";
-
 
 import "./styles.css";
 
 export default function Notes() {
     const {noteList, setNoteList} = useNoteList();
-    const {hightlight, setHightLight} = useHightlight();
+    const {hightlight, setHightLight} = useHightLight();
 
     return (
         <section className="notes">

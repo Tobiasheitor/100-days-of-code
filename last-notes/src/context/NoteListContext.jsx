@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from 'react';
+import React, {useState, useContext, createContext} from "react";
 
 const NoteListContext = createContext();
 
@@ -9,7 +9,7 @@ export default function NoteListProvider({children}) {
         <NoteListContext.Provider
             value={{
                 noteList,
-                setNoteList
+                setNoteList,
             }}
         >
             {children}
@@ -20,6 +20,6 @@ export default function NoteListProvider({children}) {
 export function useNoteList() {
     const context = useContext(NoteListContext);
     const {noteList, setNoteList} = context;
-
+    
     return {noteList, setNoteList};
 }
