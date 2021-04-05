@@ -1,25 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 import { useHightLight } from "../../context/HightLightContext";
 
 import "./styles.css";
 
-export default function Note() {
-    const {hightlight, setHighlight} = useHightLight();
+export default function Note({ title, description }) {
+    const {hightlight, setHightLight} = useHightLight();
 
     return(
         <div className={`note ${hightlight ? "hightlight" : ""}`}
             onClick={() => {
-                setHighlight(!hightlight);
+                setHightLight(!hightlight);
             }}
         >
-            <h2 className="title">Titulo exemplo zap zap zap zap zap</h2>
+            <h2 className="title">{title}</h2>
             <hr/>
             <p className="note-description">
-                Descrição de exemplo Descrição de exemplo Descrição de exemplo Descrição de exemplo
-                Descrição de exemplo Descrição de exemplo Descrição de exemplo Descrição de exemplo
-                Descrição de exemplo Descrição de exemplo Descrição de exemplo Descrição de exemplo
-                Descrição de exemplo Descrição de exemplo Descrição de exemplo Descrição de exemplo
-                Descrição de exemplo Descrição de exemplo Descrição de exemplo Descrição de exemplo
+                {description}
             </p>
         </div>
     )

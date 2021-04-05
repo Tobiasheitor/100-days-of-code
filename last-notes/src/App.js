@@ -4,18 +4,21 @@ import Logo from "./components/Logo";
 import Notes from "./components/Notes";
 import NotesArea from "./components/NotesArea";
 import HightLightProvider from "./context/HightLightContext";
+import NoteListProvider from "./context/NoteListContext";
 
 function App() {
   return (
-    <HightLightProvider>
-      <Header>
-        <Logo />
-        <Actions />
-      </Header>
-      <NotesArea>
-        <Notes/>
-      </NotesArea>
-    </HightLightProvider>
+    <NoteListProvider>
+      <HightLightProvider>
+        <Header>
+          <Logo />
+          <Actions />
+        </Header>
+        <NotesArea>
+          <Notes/>
+        </NotesArea>
+      </HightLightProvider>
+    </NoteListProvider>
   );
 }
 

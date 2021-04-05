@@ -6,7 +6,7 @@ import Note from "../Note";
 import "./styles.css";
 
 export default function Notes() {
-    const {noteList, setNoteList} = useNoteList();
+    const {noteList} = useNoteList();
     const {hightlight, setHightLight} = useHightLight();
 
     return (

@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-import {FaBan, FaCheck} from "react-icons/fa";
+import { FaBan, FaCheck } from "react-icons/fa";
+import { useNoteList } from "../../context/NoteListContext";
 
 import "./styles.css"
 
 export default function NoteForm() {
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
-    function titleHandler(event) {
-        setTitle(event.target.value);
+    const {noteList, setNoteList} = useNoteList();
 
-        console.log(title);
+    function titleHandler(e) {
+        setTitle(e.target.value);
     }
 
-    function descriptionHandler(event) {
-        setDescription(event.target.value);
-        console.log(description);
+    function descriptionHandler(e) {
+        setDescription(e.target.value);
     }
+
+    function submitHandler(e) {
+        e.preventDefault();
+        setNoteList([
+            ...noteList,
+            {
+                id: String(Math.floor(Math.random() * 1000)),
+                title,
+                description,
+            }
+        ]);
+    }
+
     return(
         <form className="note-menu">
             <div>
@@ -32,7 +45,7 @@ export default function NoteForm() {
                 <button className="cancel">
                     <FaBan className="icon" />
                 </button>
-                <button type="submit" className="confirm">
+                <button type="submit" onClick={submitHandler} className="confirm">
                     <FaCheck className="icon" />
                 </button>
             </div>
