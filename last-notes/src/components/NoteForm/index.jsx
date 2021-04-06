@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaBan, FaCheck } from "react-icons/fa";
 import { useNoteForm } from "../../context/NoteFormContext";
 import { useNoteList } from "../../context/NoteListContext";
@@ -7,7 +7,7 @@ import "./styles.css"
 
 export default function NoteForm() {
     const {noteList, setNoteList} = useNoteList();
-    const {title, setTitle, description, setDescription} = useNoteForm();
+    const {title, setTitle, description, setDescription, setVisibleForm} = useNoteForm();
 
     function titleHandler(e) {
         setTitle(e.target.value);
@@ -29,6 +29,11 @@ export default function NoteForm() {
         ]);
     }
 
+    function cancelHandler(e) {
+        e.preventDefault();
+        setVisibleForm(false);
+    }
+
     return(
         <form className="note-menu">
             <div>
@@ -41,7 +46,7 @@ export default function NoteForm() {
             </div>
 
             <div className="buttons">
-                <button className="cancel">
+                <button className="cancel" onClick={cancelHandler}>
                     <FaBan className="icon" />
                 </button>
                 <button type="submit" onClick={submitHandler} className="confirm">

@@ -1,15 +1,23 @@
 import React from "react";
 import { useHightLight } from "../../context/HightLightContext";
+import { useNoteForm } from "../../context/NoteFormContext";
 
 import "./styles.css";
 
-export default function Note({ title, description }) {
-    const {hightlight, setHightLight} = useHightLight();
+export default function Note({ id, title, description }) {
+    const { hightlight, setHightLight } = useHightLight();
+    const { setVisibleForm } = useNoteForm();
 
     return(
-        <div className={`note ${hightlight ? "hightlight" : ""}`}
+        <div id = {id} className={`note ${hightlight === id ? "hightlight" : ""}`}
             onClick={() => {
-                setHightLight(!hightlight);
+                if (hightlight === id) {
+                    setHightLight(false);
+                    setVisibleForm(false);
+                } else {
+                    setHightLight(id);
+                    setVisibleForm(true);
+                }
             }}
         >
             <h2 className="title">{title}</h2>
