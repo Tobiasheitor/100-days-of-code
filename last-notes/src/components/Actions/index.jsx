@@ -12,10 +12,12 @@ export default function Actions() {
     const { noteList, setNoteList } = useNoteList();
 
     function createHandler() {
-        if (visibleForm) {
-            setVisibleForm(false);
+        if (visibleForm && hightlight) {
+            setTitle("");
+            setDescription("");
+            setHightLight(false);
         } else {
-            setVisibleForm(true);
+            setVisibleForm(!visibleForm);
         }
     }
 

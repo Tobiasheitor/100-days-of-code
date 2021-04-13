@@ -2,12 +2,14 @@ import React from "react";
 import { FaBan, FaCheck } from "react-icons/fa";
 import { useNoteForm } from "../../context/NoteFormContext";
 import { useNoteList } from "../../context/NoteListContext";
+import { useHightLight } from "../../context/HightLightContext";
 
 import "./styles.css"
 
 export default function NoteForm() {
     const {noteList, setNoteList} = useNoteList();
     const {title, setTitle, description, setDescription, setVisibleForm} = useNoteForm();
+    const { hightlight } = useHightLight();
 
     function titleHandler(e) {
         setTitle(e.target.value);
@@ -19,14 +21,25 @@ export default function NoteForm() {
 
     function submitHandler(e) {
         e.preventDefault();
-        setNoteList([
-            ...noteList,
-            {
-                id: String(Math.floor(Math.random() * 1000)),
-                title,
-                description,
-            }
-        ]);
+        if (hightlight) {
+            noteList.map((note) => {
+                if (note.id === hightlight) {
+                    note.title = title;
+                    note.description = description;
+                }
+            })
+
+            setNoteList([...noteList]);
+        } else {
+            setNoteList([
+                ...noteList,
+                {
+                    id: String(Math.floor(Math.random() * 1000)),
+                    title,
+                    description,
+                }
+            ]);
+        }
     }
 
     function cancelHandler(e) {
