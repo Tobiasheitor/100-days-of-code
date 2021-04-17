@@ -10,6 +10,11 @@ export default function Notes() {
     const {noteList} = useNoteList();
     const {hightlight, setHightLight} = useHightLight();
     const {setTitle, setDescription} = useNoteForm();
+    const {setNoteList} = useNoteList();
+
+    useEffect(() => {
+        getLocalNotes();
+    }, []);
 
     useEffect(() => {
         if (hightlight) {
@@ -20,7 +25,19 @@ export default function Notes() {
             setTitle("");
             setDescription("");
         }
-    }, [hightlight])
+    }, [hightlight]);
+
+    function getLocalNotes() {
+        let localNotes = localStorage.getItem("notes");
+
+        if (localNotes === null) {
+            localStorage.setItem("notes", JSON.stringify([]));
+        } else {
+            localNotes = JSON.parse(localNotes);
+            setNoteList(localNotes);
+        }
+    }
+
     return (
         <section className="notes">
             {noteList.map((note) => (
