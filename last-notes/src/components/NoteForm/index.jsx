@@ -9,7 +9,7 @@ import "./styles.css"
 export default function NoteForm() {
     const {noteList, setNoteList} = useNoteList();
     const {title, setTitle, description, setDescription, setVisibleForm} = useNoteForm();
-    const { hightlight } = useHightLight();
+    const { hightlight, setHightLight } = useHightLight();
     
     useEffect(() => {
         saveLocalNotes();
@@ -48,6 +48,7 @@ export default function NoteForm() {
 
     function cancelHandler(e) {
         e.preventDefault();
+        setHightLight(false);
         setVisibleForm(false);
     }
 
